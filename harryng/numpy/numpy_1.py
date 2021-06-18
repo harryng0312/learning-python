@@ -67,6 +67,3 @@ print(f"shape b3:\n{b3.shape}")
 # 1.5. index/slicing
 a = np.arange(1, 4, 1)
 print(f"slice: {a[-1:]}")
-
-# 1.6. basic array operations
-
