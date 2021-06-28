@@ -43,7 +43,8 @@ model.add(Dense(activation=tf.keras.activations.relu, units=128))
 model.add(Dense(activation=tf.keras.activations.softmax, units=10))
 model.compile(loss=tf.keras.losses.categorical_crossentropy,  #loss='categorical_crossentropy',
               optimizer="adam",
-              metrics=['accuracy'])
+              metrics=[tf.keras.metrics.categorical_accuracy]
+              )
 model.summary()
 
 # traing model
@@ -57,6 +58,6 @@ model.summary()
 # prediction
 model = tf.keras.models.load_model(filepath=data_model)
 plt.imshow(x_test[1999].reshape(28, 28))
-plt.show()
 y_predict = np.argmax(model.predict(x_test[1999].reshape(1, 28, 28, 1)))
 print('Giá trị dự đoán: ', y_predict)
+plt.show()

@@ -46,14 +46,15 @@ model.compile(loss=tf.keras.losses.categorical_crossentropy,
 model.summary()
 
 # traing model
-model.fit(x_train, y_train, epochs=10, verbose=2)
-tf.keras.models.save_model(model=model, filepath=data_model)
+#model.fit(x_train, y_train, epochs=10, verbose=2)
+#tf.keras.models.save_model(model=model, filepath=data_model)
 
-score = model.evaluate(x_test, y_test, verbose=0)
-print(score)
+#score = model.evaluate(x_test, y_test, verbose=0)
+#print(score)
 
 # prediction
+model = tf.keras.models.load_model(filepath=data_model)
 plt.imshow(x_test[1998].reshape(28, 28))
-plt.show()
 y_predict = np.argmax(model.predict(x_test[1998].reshape(1, 28, 28, 1)))
 print('Giá trị dự đoán: ', y_predict)
+plt.show()
