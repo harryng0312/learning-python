@@ -18,7 +18,7 @@ import pathlib
 this_path = str(pathlib.Path(__file__).parent.parent.parent.resolve()) + "/data"
 pathlib.Path(this_path).mkdir(parents=True, exist_ok=True)
 data_file = pathlib.Path(this_path + "/mnist.npz")
-data_model = pathlib.Path(this_path + "/model_2.mol")
+data_model = pathlib.Path(this_path + "/model_3.mol")
 
 mnist = tf.keras.datasets.mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data(path=data_file)
