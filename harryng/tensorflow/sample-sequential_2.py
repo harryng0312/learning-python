@@ -42,7 +42,7 @@ model.add(Dense(activation=tf.keras.activations.relu, units=128))
 # create output class
 model.add(Dense(activation=tf.keras.activations.softmax, units=10))
 model.compile(loss=tf.keras.losses.categorical_crossentropy,  #loss='categorical_crossentropy',
-              optimizer="adam",
+              optimizer=tf.keras.optimizers.Adam(), #"adam",
               metrics=[tf.keras.metrics.categorical_accuracy]
               )
 model.summary()

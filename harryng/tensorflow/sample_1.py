@@ -34,11 +34,19 @@ model = tf.keras.models.Sequential([
 model = tf.keras.models.load_model(filepath=data_model, compile=False)
 prediction = np.argmax(model.predict(np.reshape(x_test[5], (1, 28, 28))))
 print(f"prediction: {prediction}")
-
-plt.imshow(x_test[5])
-plt.show()
-
 predictions = model(x_train[:1]).numpy()
-print(f"predictions: {predictions}")
-softmax_predictions = tf.nn.softmax(predictions).numpy()
-print(f"softmax prediction: {softmax_predictions}")
+print(f"Prediction: {predictions}")
+loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+rs_loss_fn = loss_fn(y_train[:1], predictions).numpy();
+print(f"After loss fn: {rs_loss_fn}")
+
+model.compile(optimizer='adam',
+              loss=loss_fn,
+              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=5)
+model.evaluate(x_test,  y_test, verbose=2)
+
+probability_model = tf.keras.Sequential([
+    model,
+    tf.keras.layers.Softmax()])
+print(f"Probability model: {probability_model(x_test[:5])}")
