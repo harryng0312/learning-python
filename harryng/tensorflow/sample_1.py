@@ -21,10 +21,10 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 # plt.show()
 
 model = tf.keras.models.Sequential([
-  tf.keras.layers.Flatten(input_shape=(28, 28)),
-  tf.keras.layers.Dense(128, activation='relu'),
-  tf.keras.layers.Dropout(0.2),
-  tf.keras.layers.Dense(10)
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(10)
 ])
 
 # model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.1), loss=tf.keras.losses.mse)
@@ -49,4 +49,5 @@ model.evaluate(x_test,  y_test, verbose=2)
 probability_model = tf.keras.Sequential([
     model,
     tf.keras.layers.Softmax()])
+probability_model
 print(f"Probability model: {probability_model(x_test[:5])}")
